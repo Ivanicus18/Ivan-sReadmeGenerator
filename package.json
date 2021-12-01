@@ -10,5 +10,14 @@
   "license": "ISC",
   "dependencies": {
     "inquirer": "^6.5.2"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ivanicus18/Ivan-sReadmeGenerator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ivanicus18/Ivan-sReadmeGenerator/issues"
+  },
+  "homepage": "https://github.com/Ivanicus18/Ivan-sReadmeGenerator#readme"
 }

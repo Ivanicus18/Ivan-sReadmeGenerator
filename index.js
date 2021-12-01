@@ -4,7 +4,6 @@ const inquirer = require('inquirer');
 
 // TODO: Create an array of questions for user input
 const promptQuestions = questions => {
-    questions.repository = [];
     console.log(`
     ================================
     Welcome to the README Generator!
@@ -89,18 +88,36 @@ const promptQuestions = questions => {
         },
         {
             type: 'confirm',
+            name: 'confirmCredits',
+            message: 'Do you have collaborators to list or assets to attribute?',
+            default: true
+        },
+        {
+            type: 'input',
+            name: 'credits',
+            message: 'Provide the links to your collaborators github profile!',
+            when: ({ confirmCredits }) => {
+                if (confirmCredits) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'confirm',
             name: 'confirmLicense',
             message: 'Add a license so others can use your work?',
             default: true
-        },
-    ])
+        }
+    ]);
 };
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+// function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
-function init() {}
+// function init() {}
 
 // Function call to initialize app
-promptQuestions();
+promptQuestions().then(answers => console.log(answers));
