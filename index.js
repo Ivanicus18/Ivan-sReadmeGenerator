@@ -109,6 +109,30 @@ const promptQuestions = questions => {
             name: 'confirmLicense',
             message: 'Add a license so others can use your work?',
             default: true
+        },
+        {
+            type: 'input',
+            name: 'name',
+            message: 'Please provide your full name.',
+            when: ({confirmLicense}) => {
+                if (confirmLicense) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'year',
+            message: 'What year is it?',
+            when: ({confirmLicense}) => {
+                if (confirmLicense) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         }
     ]);
 };
