@@ -11,6 +11,7 @@ const generateInstall = installText => {
     `;
 };
 
+// create optional usage instructions
 const generateUse = useText => {
     if (!useText) {
         return '';
@@ -23,6 +24,7 @@ const generateUse = useText => {
     `;
 };
 
+// optionally list collaborators
 const generateCredits = creditsText => {
     if (!creditsText) {
         return '';
@@ -35,14 +37,15 @@ const generateCredits = creditsText => {
     `;
 };
 
-const generateLicense = (confirmLicense, nameText, yearText) => {
+// optionally add the MIT license
+const generateLicense = (confirmLicense, nameText) => {
     if (confirmLicense) {
         return `
             ## License
 
             MIT License
 
-            Copyright (c) ${yearText} ${nameText}
+            Copyright (c) ${new Date().getFullYear()} ${nameText}
 
             Permission is hereby granted, free of charge, to any person obtaining a copy
             of this software and associated documentation files (the "Software"), to deal
@@ -70,5 +73,24 @@ const generateLicense = (confirmLicense, nameText, yearText) => {
 module.exports = templateData => {
     console.log(templateData);
 
-    const { }
-}
+    return `
+    # ${templateData.titleText}
+
+    ## Description
+    ${templateData.descText}
+
+    ## Deployed Website
+    ${templateData.linkText}
+
+    ## Languages Used
+    ${templateData.lang}
+
+    ${generateInstall(templateData.install)}
+
+    ${generateUse(templateData.use)}
+
+    ${generateCredits(templateData.credits)}
+
+    ${generateLicense()}
+    `;
+};

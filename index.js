@@ -1,9 +1,13 @@
 // TODO: Include packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
+const generatePage = require('./src/doc-template')
 
 // TODO: Create an array of questions for user input
 const promptQuestions = questions => {
+    if (!questions) {
+        questions = [];
+    }
     console.log(`
     ================================
     Welcome to the README Generator!
@@ -105,36 +109,21 @@ const promptQuestions = questions => {
             }
         },
         {
+            type: 'input',
+            name: 'name',
+            message: 'Please provide your full name.',
+        },
+        {
             type: 'confirm',
             name: 'confirmLicense',
             message: 'Add a license so others can use your work?',
             default: true
-        },
-        {
-            type: 'input',
-            name: 'name',
-            message: 'Please provide your full name.',
-            when: ({confirmLicense}) => {
-                if (confirmLicense) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'year',
-            message: 'What year is it?',
-            when: ({confirmLicense}) => {
-                if (confirmLicense) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
         }
-    ]);
+    ])
+    .then(questionData => {
+        questions.push(questionData);
+        return questions;
+    });
 };
 
 // TODO: Create a function to write README file
@@ -144,4 +133,14 @@ const promptQuestions = questions => {
 // function init() {}
 
 // Function call to initialize app
-promptQuestions().then(answers => console.log(answers));
+promptQuestions()
+    .then(questions => {
+        const pageMarkdown = generatePage(questions);
+
+        fs.writeFile('./dist/readme.md', pageMarkdown, err => {
+            if (err) throw new Error(err);
+
+            console.log('Readme created! Checkout the dist file for your file!')
+        })
+    })
+    
