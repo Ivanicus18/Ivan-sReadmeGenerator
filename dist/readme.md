@@ -1,25 +1,25 @@
 
-    # The Blah Which Project
+    # blah
 
     ## Description
-    This has absolutely nothing to do with witches.
+    blah
 
     ## Deployed Website
     www.blah.com
 
     ## Languages Used
-    JavaScript,HTML,CSS,ES6,jQuery,Bootstrap,Node
+    JavaScript* HTML* CSS* ES6* jQuery* Bootstrap* Node
 
     
         ## Installation Guide
 
-        There is definitely nothing arcane needed.
+        blah
     
 
     
         ## Usage Guide
 
-        No magic rituals. Period
+        blah
     
 
     

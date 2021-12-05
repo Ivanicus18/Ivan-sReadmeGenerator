@@ -73,24 +73,26 @@ const generateLicense = (confirmLicense, name) => {
 module.exports = templateData => {
     console.log(templateData);
 
+    const { title, desc, link, lang, install, use, credits, name } = templateData
+
     return `
-    # ${templateData.title}
+    # ${title}
 
     ## Description
-    ${templateData.desc}
+    ${desc}
 
     ## Deployed Website
-    ${templateData.link}
+    ${link}
 
     ## Languages Used
-    ${templateData.lang}
+    ${lang.join(' *')}
 
-    ${generateInstall(templateData.install)}
+    ${generateInstall(install)}
 
-    ${generateUse(templateData.use)}
+    ${generateUse(use)}
 
-    ${generateCredits(templateData.credits)}
+    ${generateCredits(credits)}
 
-    ${generateLicense(templateData.name)}
+    ${generateLicense(name)}
     `;
 };
