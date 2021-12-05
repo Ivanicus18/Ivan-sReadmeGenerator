@@ -130,7 +130,7 @@ promptQuestions()
     .then(answers => {
         const pageMarkdown = generatePage(answers);
 
-        fs.writeFile('./dist/readme.md', pageMarkdown, err => {
+        fs.writeFile('./dist/README.md', pageMarkdown, err => {
             if (err) throw new Error(err);
 
             console.log('Readme created! Checkout the dist file for your file!')
