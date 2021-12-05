@@ -5,9 +5,6 @@ const generatePage = require('./src/doc-template')
 
 // TODO: Create an array of questions for user input
 const promptQuestions = questions => {
-    if (!questions) {
-        questions = [];
-    }
     console.log(`
     ================================
     Welcome to the README Generator!
@@ -119,11 +116,7 @@ const promptQuestions = questions => {
             message: 'Add a license so others can use your work?',
             default: true
         }
-    ])
-    .then(questionData => {
-        questions.push(questionData);
-        return questions;
-    });
+    ]);
 };
 
 // TODO: Create a function to write README file
@@ -134,8 +127,8 @@ const promptQuestions = questions => {
 
 // Function call to initialize app
 promptQuestions()
-    .then(questions => {
-        const pageMarkdown = generatePage(questions);
+    .then(answers => {
+        const pageMarkdown = generatePage(answers);
 
         fs.writeFile('./dist/readme.md', pageMarkdown, err => {
             if (err) throw new Error(err);
